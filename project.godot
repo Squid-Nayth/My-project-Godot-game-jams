@@ -11,8 +11,18 @@ config_version=5
 [application]
 
 config/name="My project Godot game jams"
+run/main_scene="res://Scenes/Player.tscn"
 config/features=PackedStringArray("4.2", "GL Compatibility")
 config/icon="res://icon.svg"
+
+[display]
+
+window/size/viewport_width=1440
+window/size/viewport_height=900
+
+[dotnet]
+
+project/assembly_name="My project Godot game jams"
 
 [rendering]
 
