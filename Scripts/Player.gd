@@ -1,37 +1,31 @@
 extends CharacterBody2D
 
 var speed : int = 200 
-var jump_force : int = -400
-var is_on_ground : bool = false 
-var curren_state : String = "blue" # initial state is blue 
-var Velocity : Vector2 = Vector2.ZERO 
-var gravity : int = 2000
-@onready var animated_sprite : AnimatedSprite2D = $AnimatedSprite2D
-@onready var collision_shape : CollisionShape2D = $CollisionShape2D
+@onready var animated_sprite = $AnimatedSprite2D
+var Velocity = Vector2(0,0)
 
-func _process(delta):
-	pass
-	
-func _handle_input(delta): 
+func _player_movement(delta): 
 	
 	if Input.is_action_pressed("ui_left"):
 		Velocity.x -= speed
-		$AnimatedSprite2D.play("run")
+		animated_sprite.play("run")
+		animated_sprite.flip_h = true
 	if Input.is_action_pressed("ui_right"):
 		Velocity.x += speed
-		$AnimatedSprite2D.play("run")
+		animated_sprite.flip_h = false
 	if Input.is_action_pressed("ui_up"):
 		Velocity.y -= speed
+		animated_sprite.play("jump")
 	elif not is_on_floor():
-		velocity.y += gravity
-		$AnimatedSprite2D.play("jump")
+		animated_sprite.play("jump")
 	else:
-		$AnimatedSprite2D.play("idle")
+		Velocity.x = 0 
+		Velocity.y = 0
+		animated_sprite.play("idle")
 		
 		move_and_slide()
-		Velocity.x = lerp(velocity.x,0,0.1)
+		velocity.x = lerp(velocity.x,0,0.1)
 
-		
 	
 	
 	
