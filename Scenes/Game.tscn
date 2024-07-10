@@ -1,18 +1,35 @@
-[gd_scene load_steps=21 format=3 uid="uid://ck4k2g86jrwmx"]
+[gd_scene load_steps=39 format=3 uid="uid://ck4k2g86jrwmx"]
 
 [ext_resource type="Texture2D" uid="uid://dahxeoc4jj5wf" path="res://Assets/images.jpeg" id="1_j1gx2"]
 [ext_resource type="Script" path="res://Scripts/Player.gd" id="2_t3dp4"]
 [ext_resource type="Texture2D" uid="uid://ryb50oqus85v" path="res://Assets/Perso sprite blue..png" id="2_yyvk1"]
 [ext_resource type="Texture2D" uid="uid://vxltw4j7lxis" path="res://Assets/blacknwhite_p=1_s=2.png" id="3_liwfm"]
+[ext_resource type="Texture2D" uid="uid://b4d08ub0do1qg" path="res://Assets/Perso sprite blue.png" id="4_col32"]
 [ext_resource type="Texture2D" uid="uid://c7h4eaw2qun06" path="res://Assets/red potiont.png" id="5_7vh3d"]
 [ext_resource type="Texture2D" uid="uid://c7gfyd5d5m03j" path="res://Assets/blue potion.png" id="6_7sc76"]
+[ext_resource type="Script" path="res://Scenes/Ennemis 1.gd" id="8_3rl1e"]
+[ext_resource type="Texture2D" uid="uid://bgjqyu2jsw4qk" path="res://Assets/Turtle-export.png" id="9_e6kum"]
+[ext_resource type="AudioStream" uid="uid://dgn4h870ojc7t" path="res://Audio/Klagmar's Top VGM #3,678 - Downwell - Uroboros (128 kbps).mp3" id="10_pxyw6"]
+[ext_resource type="Script" path="res://Scenes/AudioStreamPlayer2D.gd" id="11_umqik"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_j3hhv"]
 atlas = ExtResource("2_yyvk1")
 region = Rect2(96, 0, 24, 23)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_dnv4t"]
+atlas = ExtResource("2_yyvk1")
+region = Rect2(0, 0, 24, 23)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7ie6g"]
+atlas = ExtResource("4_col32")
+region = Rect2(0, 0, 24, 23)
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_6hwow"]
 atlas = ExtResource("2_yyvk1")
+region = Rect2(24, 0, 24, 23)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_exfp3"]
+atlas = ExtResource("4_col32")
 region = Rect2(24, 0, 24, 23)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_vcbrv"]
@@ -31,6 +48,22 @@ region = Rect2(48, 0, 24, 23)
 atlas = ExtResource("2_yyvk1")
 region = Rect2(72, 0, 24, 23)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_6qqxi"]
+atlas = ExtResource("4_col32")
+region = Rect2(0, 0, 24, 23)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ubqgg"]
+atlas = ExtResource("4_col32")
+region = Rect2(24, 0, 24, 23)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_d645k"]
+atlas = ExtResource("4_col32")
+region = Rect2(48, 0, 24, 23)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ad2ne"]
+atlas = ExtResource("4_col32")
+region = Rect2(72, 0, 24, 23)
+
 [sub_resource type="SpriteFrames" id="SpriteFrames_18md2"]
 animations = [{
 "frames": [{
@@ -38,7 +71,28 @@ animations = [{
 "texture": SubResource("AtlasTexture_j3hhv")
 }],
 "loop": true,
-"name": &"dead",
+"name": &"dead_blue",
+"speed": 5.0
+}, {
+"frames": [],
+"loop": true,
+"name": &"ded_red",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dnv4t")
+}],
+"loop": true,
+"name": &"idle_blue",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7ie6g")
+}],
+"loop": true,
+"name": &"idle_red",
 "speed": 5.0
 }, {
 "frames": [{
@@ -46,7 +100,15 @@ animations = [{
 "texture": SubResource("AtlasTexture_6hwow")
 }],
 "loop": true,
-"name": &"jump",
+"name": &"jump_blue",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_exfp3")
+}],
+"loop": true,
+"name": &"jump_red",
 "speed": 5.0
 }, {
 "frames": [{
@@ -63,12 +125,29 @@ animations = [{
 "texture": SubResource("AtlasTexture_rf3yr")
 }],
 "loop": true,
-"name": &"run",
+"name": &"run_blue",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6qqxi")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ubqgg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_d645k")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ad2ne")
+}],
+"loop": true,
+"name": &"run_red",
 "speed": 5.0
 }]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_ss58y"]
-radius = 48.1664
+radius = 36.1242
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_0mc21"]
 texture = ExtResource("3_liwfm")
@@ -184,7 +263,7 @@ texture_region_size = Vector2i(18, 18)
 4:2/0 = 0
 4:2/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 4:2/0/physics_layer_0/angular_velocity = 0.0
-4:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-9.01561, -9.36917, 7.24784, -9.54594, 8, 3.35876, 8, 3.88909, -3.53553, -0.353554, -8, -2.82843, -8, -5.12652)
+4:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, -8, -2.12132, 8, -2.65165)
 5:2/0 = 0
 5:2/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 5:2/0/physics_layer_0/angular_velocity = 0.0
@@ -443,6 +522,45 @@ radius = 25.02
 [sub_resource type="CircleShape2D" id="CircleShape2D_wxkcg"]
 radius = 22.2036
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_4kj40"]
+atlas = ExtResource("9_e6kum")
+region = Rect2(0, 0, 31, 35)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_x4848"]
+atlas = ExtResource("9_e6kum")
+region = Rect2(31, 0, 31, 35)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4m5si"]
+atlas = ExtResource("9_e6kum")
+region = Rect2(62, 0, 31, 35)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kddw3"]
+atlas = ExtResource("9_e6kum")
+region = Rect2(93, 0, 31, 35)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_j4020"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4kj40")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_x4848")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4m5si")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kddw3")
+}],
+"loop": true,
+"name": &"walk",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_mrxw2"]
+size = Vector2(130, 52)
+
 [node name="Game" type="Node2D"]
 position = Vector2(3, 9)
 
@@ -451,25 +569,25 @@ position = Vector2(583, 274)
 scale = Vector2(5.21818, 4.92896)
 texture = ExtResource("1_j1gx2")
 
-[node name="CharacterBody2D" type="CharacterBody2D" parent="."]
+[node name="Player" type="CharacterBody2D" parent="."]
 position = Vector2(1750.5, 455.004)
 scale = Vector2(1, 1.00222)
 script = ExtResource("2_t3dp4")
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="CharacterBody2D"]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Player"]
 texture_filter = 1
 position = Vector2(-1160.5, -276.39)
 scale = Vector2(5, 5)
 sprite_frames = SubResource("SpriteFrames_18md2")
-animation = &"dead"
+animation = &"run_red"
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D"]
-position = Vector2(-1145.5, -263.419)
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player"]
+position = Vector2(-1178.5, -277.388)
 shape = SubResource("CircleShape2D_ss58y")
 
 [node name="TileMap" type="TileMap" parent="."]
 texture_filter = 1
-position = Vector2(572, 236)
+position = Vector2(554, 296)
 scale = Vector2(5.2, 5.2)
 tile_set = SubResource("TileSet_qti02")
 format = 2
@@ -500,3 +618,30 @@ texture = ExtResource("6_7sc76")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="RigidBody2D2"]
 position = Vector2(318, 375)
 shape = SubResource("CircleShape2D_wxkcg")
+
+[node name="Ennemis 1" type="CharacterBody2D" parent="."]
+script = ExtResource("8_3rl1e")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Ennemis 1"]
+texture_filter = 1
+position = Vector2(193, 549)
+scale = Vector2(5, 5)
+sprite_frames = SubResource("SpriteFrames_j4020")
+animation = &"walk"
+frame_progress = 0.421216
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Ennemis 1"]
+position = Vector2(190, 585)
+shape = SubResource("RectangleShape2D_mrxw2")
+
+[node name="Ennemis 2" type="CharacterBody2D" parent="."]
+position = Vector2(161, 158)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Ennemis 2"]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Ennemis 2"]
+position = Vector2(-243, 188)
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("10_pxyw6")
+script = ExtResource("11_umqik")
