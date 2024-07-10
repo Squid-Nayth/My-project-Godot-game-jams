@@ -1,9 +1,11 @@
-[gd_scene load_steps=15 format=3 uid="uid://ck4k2g86jrwmx"]
+[gd_scene load_steps=21 format=3 uid="uid://ck4k2g86jrwmx"]
 
 [ext_resource type="Texture2D" uid="uid://dahxeoc4jj5wf" path="res://Assets/images.jpeg" id="1_j1gx2"]
 [ext_resource type="Script" path="res://Scripts/Player.gd" id="2_t3dp4"]
 [ext_resource type="Texture2D" uid="uid://ryb50oqus85v" path="res://Assets/Perso sprite blue..png" id="2_yyvk1"]
 [ext_resource type="Texture2D" uid="uid://vxltw4j7lxis" path="res://Assets/blacknwhite_p=1_s=2.png" id="3_liwfm"]
+[ext_resource type="Texture2D" uid="uid://c7h4eaw2qun06" path="res://Assets/red potiont.png" id="5_7vh3d"]
+[ext_resource type="Texture2D" uid="uid://c7gfyd5d5m03j" path="res://Assets/blue potion.png" id="6_7sc76"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_j3hhv"]
 atlas = ExtResource("2_yyvk1")
@@ -431,11 +433,21 @@ texture_region_size = Vector2i(18, 18)
 physics_layer_0/collision_layer = 1
 sources/0 = SubResource("TileSetAtlasSource_0mc21")
 
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_82dre"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_nhsp5"]
+radius = 25.02
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_72x51"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_wxkcg"]
+radius = 22.2036
+
 [node name="Game" type="Node2D"]
 position = Vector2(3, 9)
 
 [node name="Background" type="Sprite2D" parent="."]
-position = Vector2(600, 346)
+position = Vector2(583, 274)
 scale = Vector2(5.21818, 4.92896)
 texture = ExtResource("1_j1gx2")
 
@@ -446,13 +458,13 @@ script = ExtResource("2_t3dp4")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="CharacterBody2D"]
 texture_filter = 1
-position = Vector2(-1667.5, 61.8581)
+position = Vector2(-1160.5, -276.39)
 scale = Vector2(5, 5)
 sprite_frames = SubResource("SpriteFrames_18md2")
-animation = &"run"
+animation = &"dead"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D"]
-position = Vector2(-1692.5, 57.867)
+position = Vector2(-1145.5, -263.419)
 shape = SubResource("CircleShape2D_ss58y")
 
 [node name="TileMap" type="TileMap" parent="."]
@@ -461,4 +473,30 @@ position = Vector2(572, 236)
 scale = Vector2(5.2, 5.2)
 tile_set = SubResource("TileSet_qti02")
 format = 2
-layer_0/tile_data = PackedInt32Array(327679, 65536, 3, 262144, 131072, 3, 262145, 131072, 3, 262146, 131072, 3, 262147, 131072, 3, 262148, 131072, 3, 262149, 131072, 3, 262150, 131072, 3, 327678, 131072, 3, 327677, 131072, 3, 327676, 131072, 3, 327675, 131072, 3, 327674, 131072, 3, 327673, 131072, 3, 262151, 131072, 3, 327672, 131072, 3, 131065, 0, 2, 65529, 0, 2, -7, 0, 2, -65543, 0, 2, -131079, 0, 0, -131078, 131072, 0, 196604, 262144, 2, 196605, 262144, 2, 131075, 262144, 2, 131076, 262144, 2, 65535, 262144, 2, 0, 262144, 2, 262152, 131072, 3, 65542, 196608, 2, 6, 196608, 2, -65530, 196608, 2, -131066, 196608, 2, -196602, 196608, 2, -196603, 131072, 0, -196604, 131072, 0, -131077, 131072, 0, 1, 262144, 2, 65534, 262144, 2, 196601, 262144, 2, 131078, 262144, 2, -131076, 196608, 4, -196605, 196608, 6)
+layer_0/tile_data = PackedInt32Array(327679, 65536, 3, 262144, 131072, 3, 262145, 131072, 3, 262146, 131072, 3, 262147, 131072, 3, 262148, 131072, 3, 262149, 131072, 3, 262150, 131072, 3, 327678, 131072, 3, 327677, 131072, 3, 327676, 131072, 3, 327675, 131072, 3, 327674, 131072, 3, 327673, 131072, 3, 262151, 131072, 3, 327672, 131072, 3, 131065, 0, 2, 65529, 0, 2, -7, 0, 2, -65543, 0, 2, -131079, 0, 1, 196604, 262144, 2, 196605, 262144, 2, 131075, 262144, 2, 65535, 262144, 2, 0, 262144, 2, 65542, 196608, 2, 6, 196608, 2, -65530, 196608, 2, -131066, 196608, 2, -196602, 196608, 1, 196601, 262144, 2, 131078, 262144, 2, 131074, 262144, 2, 131064, 0, 0, 196600, 0, 1, 262136, 0, 1, 65543, 196608, 0, 131079, 196608, 1, 196615, 196608, 1, -196615, 0, 1, -262151, 0, 0, -262138, 196608, 1, -327674, 196608, 0, -262150, 65536, 0, -262149, 131072, 0, -262148, 65536, 0, -262147, 131072, 0, -262146, 65536, 0, -262145, 131072, 0, -327680, 65536, 0, -327679, 65536, 0, -327678, 131072, 0, -327677, 65536, 0, -327676, 65536, 0, -327675, 131072, 0)
+
+[node name="RigidBody2D" type="RigidBody2D" parent="."]
+position = Vector2(11, -406)
+physics_material_override = SubResource("PhysicsMaterial_82dre")
+
+[node name="Red potion" type="Sprite2D" parent="RigidBody2D"]
+position = Vector2(820, 346)
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("5_7vh3d")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RigidBody2D"]
+position = Vector2(819, 377)
+shape = SubResource("CircleShape2D_nhsp5")
+
+[node name="RigidBody2D2" type="RigidBody2D" parent="."]
+position = Vector2(-5, -409)
+physics_material_override = SubResource("PhysicsMaterial_72x51")
+
+[node name="Blue potion" type="Sprite2D" parent="RigidBody2D2"]
+position = Vector2(321, 346)
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("6_7sc76")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RigidBody2D2"]
+position = Vector2(318, 375)
+shape = SubResource("CircleShape2D_wxkcg")
